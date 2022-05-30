@@ -4,7 +4,7 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
-import fr.aureliancnx.betterbungee.api.proxy.IProxyServer;
+import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
@@ -28,7 +28,7 @@ public class PacketProxyKeepAlive extends Packet {
         super();
     }
 
-    public PacketProxyKeepAlive(final IProxyServer proxyServer) {
+    public PacketProxyKeepAlive(final IBungeeServer proxyServer) {
         this.proxyName = proxyServer.getProxyName();
         this.slots = proxyServer.getSlotCount();
         this.players = proxyServer.getPlayers();
