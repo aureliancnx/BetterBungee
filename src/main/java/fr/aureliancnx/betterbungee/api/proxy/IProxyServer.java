@@ -1,6 +1,8 @@
 package fr.aureliancnx.betterbungee.api.proxy;
 
-public interface IProxyServer {
+import fr.aureliancnx.betterbungee.packet.proxy.PacketProxyKeepAlive;
+
+public interface IProxyServer extends IPlayerProxy {
 
     /**
      * Get proxy server name
