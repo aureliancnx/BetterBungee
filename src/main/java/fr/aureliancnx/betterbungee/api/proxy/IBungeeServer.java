@@ -1,6 +1,6 @@
 package fr.aureliancnx.betterbungee.api.proxy;
 
-import fr.aureliancnx.betterbungee.packet.bungee.PacketProxyPing;
+import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 
 public interface IBungeeServer extends IPlayerBungee {
 
@@ -29,7 +29,7 @@ public interface IBungeeServer extends IPlayerBungee {
      * sent by using the keepalive packet
      * @param keepAlive PacketProxyKeepAlive
      */
-    void update(final PacketProxyPing keepAlive);
+    void update(final PacketBungeePing keepAlive);
 
     /**
      * Checks if the proxy server is the current one

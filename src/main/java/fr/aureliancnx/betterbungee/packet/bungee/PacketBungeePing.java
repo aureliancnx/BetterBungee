@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 @Getter
-public class PacketProxyPing extends Packet {
+public class PacketBungeePing extends Packet {
 
     private static final String QUEUE_NAME = "betterbungee.proxy.keepalive";
 
@@ -24,11 +24,11 @@ public class PacketProxyPing extends Packet {
     private int                                 slots;
     private ConcurrentMap<UUID, IBetterPlayer>  players;
 
-    public PacketProxyPing() {
+    public PacketBungeePing() {
         super();
     }
 
-    public PacketProxyPing(final IBungeeServer proxyServer) {
+    public PacketBungeePing(final IBungeeServer proxyServer) {
         this.proxyName = proxyServer.getProxyName();
         this.slots = proxyServer.getSlotCount();
         this.players = proxyServer.getPlayers();

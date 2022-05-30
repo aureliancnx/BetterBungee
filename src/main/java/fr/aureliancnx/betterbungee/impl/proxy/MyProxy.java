@@ -1,6 +1,6 @@
 package fr.aureliancnx.betterbungee.impl.proxy;
 
-import fr.aureliancnx.betterbungee.packet.bungee.PacketProxyPing;
+import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 import lombok.Getter;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,7 +13,7 @@ public class MyProxy extends ProxyServer {
     }
 
     public void ping() {
-        new PacketProxyPing(this).send();
+        new PacketBungeePing(this).send();
         this.lastPing = System.currentTimeMillis();
     }
 

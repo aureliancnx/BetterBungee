@@ -3,24 +3,23 @@ package fr.aureliancnx.betterbungee.packet.bungee;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
 
 @Getter
-public class PacketProxyStop extends Packet {
+public class PacketBungeeSendToAll extends Packet {
 
-    private static final String QUEUE_NAME = "betterbungee.proxy.stop";
+    private static final String QUEUE_NAME = "betterbungee.proxy.sendtoall";
 
-    private String                          proxyName;
+    private String  command;
 
-    public PacketProxyStop() {
+    public PacketBungeeSendToAll() {
         super();
     }
 
-    public PacketProxyStop(final IBungeeServer proxyServer) {
-        this.proxyName = proxyServer.getProxyName();
+    public PacketBungeeSendToAll(final String command) {
+        this.command = command;
     }
 
     @Override
@@ -34,15 +33,15 @@ public class PacketProxyStop extends Packet {
     }
 
     @Override
-    public void fromBytes(final ByteArrayDataInput input) {
-        this.proxyName = input.readUTF();
+    public void fromBytes(ByteArrayDataInput input) {
+        this.command = input.readUTF();
     }
 
     @Override
     public byte[] toBytes() {
-        final ByteArrayDataOutput output = ByteStreams.newDataOutput();
+        ByteArrayDataOutput output = ByteStreams.newDataOutput();
 
-        output.writeUTF(proxyName);
+        output.writeUTF(command);
         return output.toByteArray();
     }
 

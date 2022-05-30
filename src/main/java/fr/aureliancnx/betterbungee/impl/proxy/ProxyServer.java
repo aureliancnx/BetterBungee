@@ -2,7 +2,7 @@ package fr.aureliancnx.betterbungee.impl.proxy;
 
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
-import fr.aureliancnx.betterbungee.packet.bungee.PacketProxyPing;
+import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 import lombok.Getter;
 
 import java.util.Map;
@@ -100,7 +100,7 @@ public class ProxyServer implements IBungeeServer {
     }
 
     @Override
-    public void update(final PacketProxyPing keepAlive) {
+    public void update(final PacketBungeePing keepAlive) {
         this.players = keepAlive.getPlayers();
         this.slots = keepAlive.getSlots();
         this.lastPing = System.currentTimeMillis();

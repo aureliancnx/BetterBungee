@@ -3,7 +3,7 @@ package fr.aureliancnx.betterbungee.manager;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
 import fr.aureliancnx.betterbungee.impl.proxy.MyProxy;
-import fr.aureliancnx.betterbungee.packet.bungee.PacketProxyPing;
+import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 import net.md_5.bungee.api.ChatColor;
 
 import java.util.Collection;
@@ -74,7 +74,7 @@ public class BungeeManager implements IBungeeManager {
     }
 
     @Override
-    public IBungeeServer update(final PacketProxyPing keepAlive) {
+    public IBungeeServer update(final PacketBungeePing keepAlive) {
         final IBungeeServer bungee = getProxy(keepAlive.getProxyName());
 
         if (bungee == null) {

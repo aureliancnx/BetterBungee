@@ -2,7 +2,7 @@ package fr.aureliancnx.betterbungee.manager;
 
 import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
 import fr.aureliancnx.betterbungee.impl.proxy.MyProxy;
-import fr.aureliancnx.betterbungee.packet.bungee.PacketProxyPing;
+import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -47,7 +47,7 @@ public interface IBungeeManager {
      * @param bungeePing PacketBungeePing
      * @return Bungee server instance
      */
-    IBungeeServer addBungee(final PacketProxyPing bungeePing);
+    IBungeeServer addBungee(final PacketBungeePing bungeePing);
 
     /**
      * Removes a bungeecord from the bungee manager
@@ -63,7 +63,7 @@ public interface IBungeeManager {
      * @param pingPacket PacketBungeePing
      * @return Updated or newly created bungee server
      */
-    IBungeeServer update(final PacketProxyPing pingPacket);
+    IBungeeServer update(final PacketBungeePing pingPacket);
 
     /**
      * Get current bungee server
