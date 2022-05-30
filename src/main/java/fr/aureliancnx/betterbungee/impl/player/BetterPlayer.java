@@ -23,7 +23,7 @@ public class BetterPlayer implements IBetterPlayer {
 
     public BetterPlayer(final MyBungee proxy, final ProxiedPlayer player) {
         this(player.getUniqueId(), player.getName(), player.getAddress().getAddress().getHostAddress(),
-                proxy.getProxyName(), player.getServer() != null ? player.getServer().getInfo().getName() : "");
+                proxy.getName(), player.getServer() != null ? player.getServer().getInfo().getName() : "");
     }
 
     public BetterPlayer(final UUID uniqueId, final String username, final String ip,
