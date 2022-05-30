@@ -5,6 +5,8 @@ import com.google.common.io.ByteStreams;
 import com.rabbitmq.client.DeliverCallback;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.packet.Packet;
+import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
+import fr.aureliancnx.betterbungee.rabbit.service.RabbitService;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -15,8 +17,8 @@ import java.util.Map;
  */
 public abstract class RabbitListener<T extends Packet> {
 
-    private final RabbitService             service;
-    private final RabbitPacketType          type;
+    private final RabbitService service;
+    private final RabbitPacketType type;
     private final String                    queueName;
     private final Class<T>                  clazz;
 

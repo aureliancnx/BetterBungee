@@ -1,6 +1,7 @@
-package fr.aureliancnx.betterbungee.rabbit;
+package fr.aureliancnx.betterbungee.rabbit.service;
 
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
+import fr.aureliancnx.betterbungee.rabbit.RabbitCredentials;
 import fr.aureliancnx.betterbungee.util.ConfigUtils;
 import lombok.Getter;
 
@@ -9,7 +10,7 @@ public class RabbitWorker {
 
     private final BetterBungeePlugin    plugin;
 
-    private RabbitCredentials           credentials;
+    private RabbitCredentials credentials;
     private RabbitService               service;
 
     public RabbitWorker(final BetterBungeePlugin plugin) {

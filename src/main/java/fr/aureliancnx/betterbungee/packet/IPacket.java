@@ -1,7 +1,7 @@
 package fr.aureliancnx.betterbungee.packet;
 
 import com.google.common.io.ByteArrayDataInput;
-import fr.aureliancnx.betterbungee.rabbit.RabbitPacketType;
+import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 
 public interface IPacket {
 

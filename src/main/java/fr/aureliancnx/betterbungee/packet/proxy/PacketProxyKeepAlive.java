@@ -8,7 +8,7 @@ import fr.aureliancnx.betterbungee.api.proxy.IProxyServer;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
-import fr.aureliancnx.betterbungee.rabbit.RabbitPacketType;
+import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
 
 import java.util.UUID;

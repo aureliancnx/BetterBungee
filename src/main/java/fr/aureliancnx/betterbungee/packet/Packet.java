@@ -2,8 +2,8 @@ package fr.aureliancnx.betterbungee.packet;
 
 import com.google.common.io.ByteArrayDataInput;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
-import fr.aureliancnx.betterbungee.rabbit.RabbitPacketType;
-import fr.aureliancnx.betterbungee.rabbit.RabbitService;
+import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
+import fr.aureliancnx.betterbungee.rabbit.service.RabbitService;
 
 public abstract class Packet implements IPacket {
 

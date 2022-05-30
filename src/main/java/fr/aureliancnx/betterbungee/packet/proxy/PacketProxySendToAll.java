@@ -4,7 +4,7 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.packet.Packet;
-import fr.aureliancnx.betterbungee.rabbit.RabbitPacketType;
+import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
 
 @Getter

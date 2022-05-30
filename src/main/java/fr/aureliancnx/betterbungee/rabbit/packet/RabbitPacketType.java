@@ -1,4 +1,4 @@
-package fr.aureliancnx.betterbungee.rabbit;
+package fr.aureliancnx.betterbungee.rabbit.packet;
 
 /**
  * @author aureliancnx

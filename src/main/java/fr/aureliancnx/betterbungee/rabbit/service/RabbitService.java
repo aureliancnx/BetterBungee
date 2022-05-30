@@ -1,4 +1,4 @@
-package fr.aureliancnx.betterbungee.rabbit;
+package fr.aureliancnx.betterbungee.rabbit.service;
 
 import com.google.gson.Gson;
 import com.rabbitmq.client.AMQP;
@@ -7,6 +7,10 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.packet.Packet;
+import fr.aureliancnx.betterbungee.rabbit.RabbitCredentials;
+import fr.aureliancnx.betterbungee.rabbit.RabbitListener;
+import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacket;
+import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
 
 import java.io.IOException;

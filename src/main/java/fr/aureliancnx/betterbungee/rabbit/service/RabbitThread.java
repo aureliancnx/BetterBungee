@@ -1,6 +1,7 @@
-package fr.aureliancnx.betterbungee.rabbit;
+package fr.aureliancnx.betterbungee.rabbit.service;
 
 import com.google.common.collect.Queues;
+import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacket;
 
 import java.util.Queue;
 
