@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+group 'fr.aureliancnx'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+}
+
+dependencies {
+    compileOnly group: 'net.md-5', name: 'bungeecord-api', version: '1.7-SNAPSHOT'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    shadow 'com.squareup.retrofit2:retrofit:2.9.0'
+    shadow 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    shadow 'com.squareup.retrofit2:converter-gson:2.9.0'
+    shadow 'com.rabbitmq:amqp-client:5.14.2'
+}
+
+jar {
+    configurations.shadow.each { dep ->
+        from(project.zipTree(dep)){
+            exclude 'META-INF', 'META-INF/**'
+
+        }
+    }
+}
+
+tasks.build.dependsOn tasks.shadowJar
+
+compileJava.options.encoding = 'UTF-8'
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
