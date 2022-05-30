@@ -20,7 +20,7 @@ public abstract class Packet implements IPacket {
     }
 
     public void send(final boolean sync) {
-        final RabbitService rabbitService = BetterBungeePlugin.getInstance().getRabbitService();
+        final RabbitService rabbitService = BetterBungeePlugin.getInstance().getRabbit().getService();
 
         if (BetterBungeePlugin.getInstance().isDebugMode()) {
             BetterBungeePlugin.getInstance().getLogger().info("[DEBUG] Sent packet: " + getQueueName()
