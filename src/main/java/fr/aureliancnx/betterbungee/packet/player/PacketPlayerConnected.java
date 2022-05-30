@@ -5,24 +5,24 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.impl.player.BetterPlayer;
-import fr.aureliancnx.betterbungee.packet.Packet;
+import fr.aureliancnx.betterbungee.packet.ListenPacket;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
 
 @Getter
-public class PacketPlayerJoin extends Packet {
+public class PacketPlayerConnected extends ListenPacket {
 
     private static final String QUEUE_NAME = "betterbungee.player.join";
 
     private IBetterPlayer player;
 
-    public PacketPlayerJoin() {
+    public PacketPlayerConnected() {
         super();
     }
 
-    public PacketPlayerJoin(final BetterPlayer player) {
+    public PacketPlayerConnected(final BetterPlayer player) {
         this.player = player;
     }
 
@@ -39,6 +39,11 @@ public class PacketPlayerJoin extends Packet {
     @Override
     public void fromBytes(ByteArrayDataInput input) {
         this.player = PacketReaderUtils.readPlayer(input);
+    }
+
+    @Override
+    public void onReceive() {
+
     }
 
     @Override

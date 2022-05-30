@@ -1,7 +1,7 @@
 package fr.aureliancnx.betterbungee.api;
 
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
-import fr.aureliancnx.betterbungee.api.proxy.IProxyServer;
+import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -22,7 +22,7 @@ public interface IBetterBungeeAPI {
      *
      * @return all available proxies
      */
-    Collection<IProxyServer> getAvailableProxies();
+    Collection<IBungeeServer> getAvailableProxies();
 
     /**
      * Get current online player count on a proxy server

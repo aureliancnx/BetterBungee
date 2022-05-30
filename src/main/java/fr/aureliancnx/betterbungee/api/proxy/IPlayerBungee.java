@@ -5,7 +5,7 @@ import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentMap;
 
-public interface IPlayerProxy {
+public interface IPlayerBungee {
 
     /**
      * Get map of players connected to

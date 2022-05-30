@@ -4,6 +4,7 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
+import fr.aureliancnx.betterbungee.packet.ListenPacket;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
@@ -11,17 +12,17 @@ import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
 
 @Getter
-public class PacketPlayerQuit extends Packet {
+public class PacketPlayerDisconnected extends ListenPacket {
 
     private static final String QUEUE_NAME = "betterbungee.player.quit";
 
     private IBetterPlayer player;
 
-    public PacketPlayerQuit() {
+    public PacketPlayerDisconnected() {
         super();
     }
 
-    public PacketPlayerQuit(final IBetterPlayer player) {
+    public PacketPlayerDisconnected(final IBetterPlayer player) {
         this.player = player;
     }
 
@@ -38,6 +39,11 @@ public class PacketPlayerQuit extends Packet {
     @Override
     public void fromBytes(ByteArrayDataInput input) {
         this.player = PacketReaderUtils.readPlayer(input);
+    }
+
+    @Override
+    public void onReceive() {
+
     }
 
     @Override

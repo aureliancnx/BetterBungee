@@ -3,7 +3,7 @@ package fr.aureliancnx.betterbungee.packet.proxy;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import fr.aureliancnx.betterbungee.api.proxy.IProxyServer;
+import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class PacketProxyStop extends Packet {
         super();
     }
 
-    public PacketProxyStop(final IProxyServer proxyServer) {
+    public PacketProxyStop(final IBungeeServer proxyServer) {
         this.proxyName = proxyServer.getProxyName();
     }
 
