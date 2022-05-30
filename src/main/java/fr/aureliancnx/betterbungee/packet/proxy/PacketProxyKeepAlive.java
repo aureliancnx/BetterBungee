@@ -4,9 +4,11 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
+import fr.aureliancnx.betterbungee.api.proxy.IProxyServer;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
+import fr.aureliancnx.betterbungee.rabbit.RabbitPacketType;
 import lombok.Getter;
 
 import java.util.UUID;
@@ -26,7 +28,7 @@ public class PacketProxyKeepAlive extends Packet {
         super();
     }
 
-    public PacketProxyKeepAlive(final IBetterPlayer proxyServer) {
+    public PacketProxyKeepAlive(final IProxyServer proxyServer) {
         this.proxyName = proxyServer.getProxyName();
         this.slots = proxyServer.getSlotCount();
         this.players = proxyServer.getPlayers();
@@ -50,7 +52,6 @@ public class PacketProxyKeepAlive extends Packet {
         final int playerCount = input.readInt();
 
         if (playerCount < 0) {
-            // TODO: severe
             return;
         }
         for (int i = 0; i < playerCount; ++i) {
