@@ -3,15 +3,21 @@ package fr.aureliancnx.betterbungee.packet.player;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import fr.aureliancnx.betterbungee.BetterBungeePlugin;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
+import fr.aureliancnx.betterbungee.manager.IBungeeManager;
+import fr.aureliancnx.betterbungee.packet.ListenPacket;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 @Getter
-public class PacketPlayerUpdate extends Packet {
+public class PacketPlayerUpdate extends ListenPacket {
 
     private static final String QUEUE_NAME = "betterbungee.player.update";
 
@@ -38,6 +44,17 @@ public class PacketPlayerUpdate extends Packet {
     @Override
     public void fromBytes(final ByteArrayDataInput input) {
         this.player = PacketReaderUtils.readPlayer(input);
+    }
+
+    @Override
+    public void onReceive() {
+        final IBungeeManager bungeeManager = BetterBungeePlugin.getInstance().getBungeeManager();
+        final IBungeeServer bungeeServer = bungeeManager.getBungee(player.getBungeeName());
+
+        if (bungeeServer == null) {
+            return;
+        }
+        bungeeServer.updatePlayer(player);
     }
 
     @Override

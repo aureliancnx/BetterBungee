@@ -17,7 +17,7 @@ public class BetterPlayer implements IBetterPlayer {
     private final UUID    uniqueId;
     private final String  username;
     private final String  ip;
-    private final String  proxyName;
+    private final String  bungeeName;
     @Setter
     private String        serverName;
 
@@ -27,11 +27,11 @@ public class BetterPlayer implements IBetterPlayer {
     }
 
     public BetterPlayer(final UUID uniqueId, final String username, final String ip,
-                      final String proxyName, final String serverName) {
+                      final String bungeeName, final String serverName) {
         this.uniqueId = uniqueId;
         this.username = username;
         this.ip = ip;
-        this.proxyName = proxyName;
+        this.bungeeName = bungeeName;
         this.serverName = serverName;
     }
 

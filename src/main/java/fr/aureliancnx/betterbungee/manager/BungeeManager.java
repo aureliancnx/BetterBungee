@@ -27,7 +27,7 @@ public class BungeeManager implements IBungeeManager {
     }
 
     public BungeeManager(final BetterBungeeConfig config) {
-        this(ProxyUtils.lookupProxyName(config), config.getLocalSlots());
+        this(config.getName(), config.getLocalSlots());
     }
 
     @Override

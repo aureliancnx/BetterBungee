@@ -4,17 +4,20 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
+import fr.aureliancnx.betterbungee.packet.ListenPacket;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.UUID;
 
 @Getter
-public class PacketPlayerSendServer extends Packet {
+public class PacketPlayerSendServer extends ListenPacket {
 
     private static final String QUEUE_NAME = "betterbungee.player.send";
 
@@ -52,6 +55,22 @@ public class PacketPlayerSendServer extends Packet {
     public void fromBytes(final ByteArrayDataInput input) {
         this.playerUuid = PacketReaderUtils.readUUID(input);
         this.serverName = input.readUTF();
+    }
+
+    @Override
+    public void onReceive() {
+        final ProxyServer proxy = ProxyServer.getInstance();
+        final ProxiedPlayer player = proxy.getPlayer(this.playerUuid);
+
+        if (player == null) {
+            return;
+        }
+
+        final ServerInfo serverInfo = proxy.getServerInfo(this.serverName);
+        if (serverInfo == null) {
+            return;
+        }
+        player.connect(serverInfo);
     }
 
     @Override
