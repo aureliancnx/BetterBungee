@@ -25,11 +25,11 @@ public interface IBetterPlayer {
     String getIp();
 
     /**
-     * Get current proxy where player is
+     * Get current bungeecord server where player is
      * logged on
      * @return string
      */
-    String getProxyName();
+    String getBungeeName();
 
     /**
      * Get current minecraft server instance

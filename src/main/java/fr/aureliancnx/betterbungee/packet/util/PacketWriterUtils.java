@@ -24,7 +24,7 @@ public class PacketWriterUtils {
         writeUUID(output, player.getUniqueId());
         output.writeUTF(player.getUsername());
         output.writeUTF(player.getIp());
-        output.writeUTF(player.getProxyName());
+        output.writeUTF(player.getBungeeName());
         output.writeUTF(player.getServerName());
     }
 
