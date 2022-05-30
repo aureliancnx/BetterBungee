@@ -1,10 +1,11 @@
 package fr.aureliancnx.betterbungee.manager;
 
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
-import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
-import fr.aureliancnx.betterbungee.impl.proxy.MyProxy;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
+import fr.aureliancnx.betterbungee.config.BetterBungeeConfig;
+import fr.aureliancnx.betterbungee.impl.proxy.BungeeServer;
+import fr.aureliancnx.betterbungee.impl.proxy.MyBungee;
 import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
-import net.md_5.bungee.api.ChatColor;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -16,22 +17,22 @@ import java.util.stream.Collectors;
 
 public class BungeeManager implements IBungeeManager {
 
-    private final MyProxy                               my;
+    private final MyBungee my;
     private final ConcurrentMap<String, IBungeeServer>  bungeeByNames;
 
     public BungeeManager(final String localBungeeName, final int localSlotCount) {
-        this.my = new MyProxy(localBungeeName, localSlotCount);
+        this.my = new MyBungee(localBungeeName, localSlotCount);
         this.bungeeByNames = new ConcurrentHashMap<>();
-        this.bungeeByNames.put(proxyName, local);
+        this.bungeeByNames.put(localBungeeName, this.my);
     }
 
     public BungeeManager(final BetterBungeeConfig config) {
-        this(ProxyUtils.lookupProxyName(config), config.getSlots());
+        this(ProxyUtils.lookupProxyName(config), config.getLocalSlots());
     }
 
     @Override
-    public IBungeeServer getProxy(final String name) {
-        if (name.equals(this.my.getBungeeName()))
+    public IBungeeServer getBungee(final String name) {
+        if (name.equals(this.my.getName()))
             return this.my;
 
         final IBungeeServer bungeeServer = bungeeByNames.get(name);
@@ -41,8 +42,8 @@ public class BungeeManager implements IBungeeManager {
     }
 
     @Override
-    public Collection<IBungeeServer> getProxies() {
-        return getProxies(proxyServer -> true);
+    public Collection<IBungeeServer> getBungees() {
+        return getBungees(proxyServer -> true);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class BungeeManager implements IBungeeManager {
     }
 
     @Override
-    public Collection<IBungeeServer> getProxies(Predicate<IBungeeServer> predicate) {
+    public Collection<IBungeeServer> getBungees(Predicate<IBungeeServer> predicate) {
         return bungeeByNames.values().stream()
                 .filter(IBungeeServer::isAlive)
                 .filter(predicate)
@@ -59,33 +60,31 @@ public class BungeeManager implements IBungeeManager {
     }
 
     @Override
-    public IBungeeServer add(final PacketProxyKeepAlive keepAlive) {
-        final IBungeeServer server = new BungeeServer(keepAlive.getProxyName(), keepAlive.getSlots(),
-                keepAlive.getPlayers());
+    public IBungeeServer addBungee(final PacketBungeePing ping) {
+        final IBungeeServer server = new BungeeServer(ping.getName(), ping.getSlots(), ping.getPlayers());
 
-        bungeeByNames.put(server.getProxyName(), server);
-        BetterBungeePlugin.getInstance().getLogger().info("[BetterBungee] " + ChatColor.GREEN + "Registered running proxy: " + server.getProxyName());
+        bungeeByNames.put(server.getName(), server);
+        BetterBungeePlugin.getInstance().getLogger().info("[BetterBungee] Registered running proxy: " + server.getName());
         return server;
     }
 
     @Override
-    public IBungeeServer remove(final String proxyName) {
+    public IBungeeServer removeBungee(final String proxyName) {
         return bungeeByNames.remove(proxyName);
     }
 
     @Override
-    public IBungeeServer update(final PacketBungeePing keepAlive) {
-        final IBungeeServer bungee = getProxy(keepAlive.getProxyName());
+    public IBungeeServer updateBungee(final PacketBungeePing ping) {
+        final IBungeeServer bungee = getBungee(ping.getName());
 
-        if (bungee == null) {
-            return add(keepAlive);
-        }
-        bungee.update(keepAlive);
+        if (bungee == null)
+            return addBungee(ping);
+        bungee.updateBungee(ping);
         return bungee;
     }
 
     @Override
-    public MyProxy getMy() {
+    public MyBungee getMy() {
         return this.my;
     }
 

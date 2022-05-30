@@ -3,7 +3,7 @@ package fr.aureliancnx.betterbungee.packet.bungee;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
@@ -13,14 +13,14 @@ public class PacketBungeeStop extends Packet {
 
     private static final String QUEUE_NAME = "betterbungee.proxy.stop";
 
-    private String                          proxyName;
+    private String                          bungeeName;
 
     public PacketBungeeStop() {
         super();
     }
 
     public PacketBungeeStop(final IBungeeServer proxyServer) {
-        this.proxyName = proxyServer.getProxyName();
+        this.bungeeName = proxyServer.getName();
     }
 
     @Override
@@ -35,14 +35,14 @@ public class PacketBungeeStop extends Packet {
 
     @Override
     public void fromBytes(final ByteArrayDataInput input) {
-        this.proxyName = input.readUTF();
+        this.bungeeName = input.readUTF();
     }
 
     @Override
     public byte[] toBytes() {
         final ByteArrayDataOutput output = ByteStreams.newDataOutput();
 
-        output.writeUTF(proxyName);
+        output.writeUTF(this.bungeeName);
         return output.toByteArray();
     }
 

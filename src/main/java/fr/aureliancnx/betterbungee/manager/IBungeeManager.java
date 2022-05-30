@@ -1,7 +1,7 @@
 package fr.aureliancnx.betterbungee.manager;
 
-import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
-import fr.aureliancnx.betterbungee.impl.proxy.MyProxy;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
+import fr.aureliancnx.betterbungee.impl.proxy.MyBungee;
 import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 
 import java.util.Collection;
@@ -55,7 +55,7 @@ public interface IBungeeManager {
      * @param bungeeName exact bungee name (case insensitive)
      * @return removed bungee server instance or null if unknown
      */
-    IBungeeServer remove(final String bungeeName);
+    IBungeeServer removeBungee(final String bungeeName);
 
     /**
      * Updates bungeecord information (such as player data)
@@ -63,13 +63,13 @@ public interface IBungeeManager {
      * @param pingPacket PacketBungeePing
      * @return Updated or newly created bungee server
      */
-    IBungeeServer update(final PacketBungeePing pingPacket);
+    IBungeeServer updateBungee(final PacketBungeePing pingPacket);
 
     /**
      * Get current bungee server
      * @return MyBungee
      */
-    MyProxy getMy();
+    MyBungee getMy();
 
 
 }

@@ -1,7 +1,7 @@
 package fr.aureliancnx.betterbungee.impl.player;
 
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
-import fr.aureliancnx.betterbungee.impl.proxy.MyProxy;
+import fr.aureliancnx.betterbungee.impl.proxy.MyBungee;
 import fr.aureliancnx.betterbungee.packet.player.PacketPlayerSendMessage;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class BetterPlayer implements IBetterPlayer {
     @Setter
     private String        serverName;
 
-    public BetterPlayer(final MyProxy proxy, final ProxiedPlayer player) {
+    public BetterPlayer(final MyBungee proxy, final ProxiedPlayer player) {
         this(player.getUniqueId(), player.getName(), player.getAddress().getAddress().getHostAddress(),
                 proxy.getProxyName(), player.getServer() != null ? player.getServer().getInfo().getName() : "");
     }

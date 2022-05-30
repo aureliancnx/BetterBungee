@@ -6,9 +6,9 @@ import lombok.Getter;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Getter
-public class MyProxy extends ProxyServer {
+public class MyBungee extends BungeeServer {
 
-    public MyProxy(final String proxyName, final int slotCount) {
+    public MyBungee(final String proxyName, final int slotCount) {
         super(proxyName, slotCount, new ConcurrentHashMap<>());
     }
 

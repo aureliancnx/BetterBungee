@@ -1,4 +1,4 @@
-package fr.aureliancnx.betterbungee.api.proxy;
+package fr.aureliancnx.betterbungee.api.bungee;
 
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 

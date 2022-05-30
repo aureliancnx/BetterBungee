@@ -1,7 +1,7 @@
 package fr.aureliancnx.betterbungee.api.event;
 
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
-import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.md_5.bungee.api.plugin.Event;

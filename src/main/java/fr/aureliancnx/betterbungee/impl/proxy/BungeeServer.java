@@ -1,7 +1,7 @@
 package fr.aureliancnx.betterbungee.impl.proxy;
 
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
-import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 import lombok.Getter;
 
@@ -12,18 +12,18 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
 @Getter
-public class ProxyServer implements IBungeeServer {
+public class BungeeServer implements IBungeeServer {
 
-    private final String                            proxyName;
+    private final String                            name;
 
     private int                                     slots;
     long                                            lastPing;
     private ConcurrentMap<String, IBetterPlayer>    playerNames;
     private ConcurrentMap<UUID, IBetterPlayer>      players;
 
-    public ProxyServer(final String proxyName, final int slots,
-                       final ConcurrentMap<UUID, IBetterPlayer> players) {
-        this.proxyName = proxyName;
+    public BungeeServer(final String name, final int slots,
+                        final ConcurrentMap<UUID, IBetterPlayer> players) {
+        this.name = name;
         this.slots = slots;
         this.players = players;
         this.lastPing = System.currentTimeMillis();
@@ -100,9 +100,9 @@ public class ProxyServer implements IBungeeServer {
     }
 
     @Override
-    public void update(final PacketBungeePing keepAlive) {
-        this.players = keepAlive.getPlayers();
-        this.slots = keepAlive.getSlots();
+    public void updateBungee(final PacketBungeePing proxy) {
+        this.players = proxy.getPlayers();
+        this.slots = proxy.getSlots();
         this.lastPing = System.currentTimeMillis();
         this.playerNames = new ConcurrentHashMap<>(players.entrySet().stream().collect(Collectors.toMap(
                 e -> e.getValue().getUsername().toLowerCase(),

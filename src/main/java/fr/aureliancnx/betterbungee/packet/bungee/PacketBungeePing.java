@@ -4,7 +4,7 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
-import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
@@ -20,7 +20,7 @@ public class PacketBungeePing extends Packet {
 
     private static final String QUEUE_NAME = "betterbungee.proxy.keepalive";
 
-    private String                              proxyName;
+    private String                              name;
     private int                                 slots;
     private ConcurrentMap<UUID, IBetterPlayer>  players;
 
@@ -29,7 +29,7 @@ public class PacketBungeePing extends Packet {
     }
 
     public PacketBungeePing(final IBungeeServer proxyServer) {
-        this.proxyName = proxyServer.getProxyName();
+        this.name = proxyServer.getName();
         this.slots = proxyServer.getSlotCount();
         this.players = proxyServer.getPlayers();
     }
@@ -46,7 +46,7 @@ public class PacketBungeePing extends Packet {
 
     @Override
     public void fromBytes(ByteArrayDataInput input) {
-        this.proxyName = input.readUTF();
+        this.name = input.readUTF();
         this.players = new ConcurrentHashMap<>();
         this.slots = input.readInt();
         final int playerCount = input.readInt();
@@ -64,12 +64,10 @@ public class PacketBungeePing extends Packet {
     public byte[] toBytes() {
         ByteArrayDataOutput output = ByteStreams.newDataOutput();
 
-        output.writeUTF(proxyName);
-        output.writeInt(slots);
-        output.writeInt(players.size());
-        for (IBetterPlayer player : players.values()) {
-            PacketWriterUtils.writePlayer(output, player);
-        }
+        output.writeUTF(this.name);
+        output.writeInt(this.slots);
+        output.writeInt(this.players.size());
+        players.values().forEach(player -> PacketWriterUtils.writePlayer(output, player));
         return output.toByteArray();
     }
 

@@ -1,14 +1,14 @@
-package fr.aureliancnx.betterbungee.api.proxy;
+package fr.aureliancnx.betterbungee.api.bungee;
 
 import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 
 public interface IBungeeServer extends IPlayerBungee {
 
     /**
-     * Get proxy server name
+     * Get bungee server name
      * @return string
      */
-    String getProxyName();
+    String getName();
 
     /**
      * Checks if the proxy server is alive (currently running)
@@ -25,11 +25,11 @@ public interface IBungeeServer extends IPlayerBungee {
     long getLastPing();
 
     /**
-     * Updates current IProxyServer instance with data
-     * sent by using the keepalive packet
-     * @param keepAlive PacketProxyKeepAlive
+     * Updates current IBungeeServer instance with data
+     * sent by using the ping packet
+     * @param ping PacketBungeePing
      */
-    void update(final PacketBungeePing keepAlive);
+    void updateBungee(final PacketBungeePing ping);
 
     /**
      * Checks if the proxy server is the current one

@@ -6,8 +6,9 @@ import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.api.event.player.BetterPlayerConnectedEvent;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
-import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.impl.player.BetterPlayer;
+import fr.aureliancnx.betterbungee.manager.IBungeeManager;
 import fr.aureliancnx.betterbungee.packet.ListenPacket;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
@@ -50,8 +51,7 @@ public class PacketPlayerConnected extends ListenPacket {
         if (player == null) {
             return;
         }
-        // TODO: create bungee manager
-        final BungeeManager bungeeManager = BetterBungeePlugin.getInstance().getBungeeManager();
+        final IBungeeManager bungeeManager = BetterBungeePlugin.getInstance().getBungeeManager();
         // Try to retrieve bungeecord server with name
         IBungeeServer bungeeServer = bungeeManager.getBungee(player.getBungeeName());
         if (bungeeServer == null) {
