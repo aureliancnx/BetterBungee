@@ -1,4 +1,4 @@
-package fr.aureliancnx.betterbungee.packet.proxy;
+package fr.aureliancnx.betterbungee.packet.bungee;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;

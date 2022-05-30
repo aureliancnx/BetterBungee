@@ -2,7 +2,7 @@ package fr.aureliancnx.betterbungee.impl.proxy;
 
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.api.proxy.IBungeeServer;
-import fr.aureliancnx.betterbungee.packet.proxy.PacketProxyPing;
+import fr.aureliancnx.betterbungee.packet.bungee.PacketProxyPing;
 import lombok.Getter;
 
 import java.util.Map;

@@ -1,6 +1,6 @@
 package fr.aureliancnx.betterbungee.api.proxy;
 
-import fr.aureliancnx.betterbungee.packet.proxy.PacketProxyPing;
+import fr.aureliancnx.betterbungee.packet.bungee.PacketProxyPing;
 
 public interface IBungeeServer extends IPlayerBungee {
 
