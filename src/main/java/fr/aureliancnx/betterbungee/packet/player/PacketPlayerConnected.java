@@ -37,7 +37,7 @@ public class PacketPlayerConnected extends ListenPacket {
     }
 
     @Override
-    public void fromBytes(ByteArrayDataInput input) {
+    public void fromBytes(final ByteArrayDataInput input) {
         this.player = PacketReaderUtils.readPlayer(input);
     }
 

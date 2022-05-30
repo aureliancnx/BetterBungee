@@ -49,7 +49,7 @@ public class PacketPlayerSendServer extends Packet {
     }
 
     @Override
-    public void fromBytes(ByteArrayDataInput input) {
+    public void fromBytes(final ByteArrayDataInput input) {
         this.playerUuid = PacketReaderUtils.readUUID(input);
         this.serverName = input.readUTF();
     }

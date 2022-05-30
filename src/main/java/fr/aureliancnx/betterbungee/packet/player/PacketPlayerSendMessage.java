@@ -40,7 +40,7 @@ public class PacketPlayerSendMessage extends Packet {
     }
 
     @Override
-    public void fromBytes(ByteArrayDataInput input) {
+    public void fromBytes(final ByteArrayDataInput input) {
         this.uuid = PacketReaderUtils.readUUID(input);
         this.message = input.readUTF();
     }
