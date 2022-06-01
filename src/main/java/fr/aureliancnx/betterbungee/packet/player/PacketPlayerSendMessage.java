@@ -3,6 +3,9 @@ package fr.aureliancnx.betterbungee.packet.player;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import fr.aureliancnx.betterbungee.BetterBungeePlugin;
+import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
+import fr.aureliancnx.betterbungee.api.event.player.BetterPlayerReceiveMessageEvent;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.packet.ListenPacket;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
@@ -11,6 +14,7 @@ import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.plugin.PluginManager;
 
 import java.util.UUID;
 
@@ -49,11 +53,18 @@ public class PacketPlayerSendMessage extends ListenPacket {
 
     @Override
     public void onReceive() {
-        final ProxiedPlayer player = ProxyServer.getInstance().getPlayer(uuid);
+        final ProxyServer proxyServer = ProxyServer.getInstance();
+        final PluginManager pluginManager = proxyServer.getPluginManager();
+        final ProxiedPlayer player = proxyServer.getPlayer(uuid);
         if (player == null) {
             return;
         }
-        player.sendMessage(message);
+
+        final BetterPlayerReceiveMessageEvent event = new BetterPlayerReceiveMessageEvent(player, message);
+        pluginManager.callEvent(event);
+        if (!event.isCanceled()) {
+            player.sendMessage(event.getMessage());
+        }
     }
 
     @Override
