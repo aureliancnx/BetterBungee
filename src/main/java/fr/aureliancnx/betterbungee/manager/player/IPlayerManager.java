@@ -9,14 +9,42 @@ import java.util.function.Predicate;
 
 public interface IPlayerManager {
 
+    /**
+     * Get all better players online over the network that matches
+     * a specific predicate.
+     * @param predicate predicate
+     * @return collection of unique IBetterPlayer objects
+     */
     Collection<IBetterPlayer> getPlayers(Predicate<IBetterPlayer> predicate);
 
+    /**
+     * Get all better players online over the network.
+     * @return collection of unique IBetterPlayer objects
+     */
     Collection<IBetterPlayer> getPlayers();
 
+    /**
+     * Get online player from his attached proxied player instance. Returns null if the
+     * player is not online over the network.
+     * @param player proxied player
+     * @return IBetterPlayer or null
+     */
     IBetterPlayer getPlayer(final ProxiedPlayer player);
 
+    /**
+     * Get online player from its unique id. Returns null if the player is not online
+     * over the network.
+     * @param uuid uuid player's unique id
+     * @return IBetterPlayer or null
+     */
     IBetterPlayer getPlayer(final UUID uuid);
 
+    /**
+     * Get online player from username. Returns null if the player is not online
+     * over the network.
+     * @param username player username
+     * @return IBetterPlayer or null
+     */
     IBetterPlayer getPlayer(final String username);
 
     /**
