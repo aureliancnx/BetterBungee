@@ -7,6 +7,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.packet.IListenPacket;
+import fr.aureliancnx.betterbungee.packet.ListenPacket;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.rabbit.RabbitCredentials;
 import fr.aureliancnx.betterbungee.rabbit.RabbitListener;
@@ -29,7 +30,7 @@ public class RabbitService {
     private final Gson                  gson;
     private final RabbitCredentials     credentials;
     private final List<RabbitThread>    workers;
-    private final List<IListenPacket>   listeners;
+    private final List<RabbitListener>  listeners;
     private Connection                  connection;
     private Channel                     channel;
 
@@ -70,8 +71,8 @@ public class RabbitService {
         return this.connection.isOpen();
     }
 
-    public void registerListener(final IListenPacket listenPacket) {
-        this.listeners.add(listenPacket);
+    public void registerListener(final ListenPacket listenPacket) {
+        this.listeners.add(new RabbitListener(this, listenPacket));
     }
 
     public RabbitPacket convertPacket(final Packet packet) {
