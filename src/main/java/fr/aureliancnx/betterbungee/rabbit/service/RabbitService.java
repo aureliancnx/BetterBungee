@@ -6,6 +6,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
+import fr.aureliancnx.betterbungee.packet.IListenPacket;
 import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.rabbit.RabbitCredentials;
 import fr.aureliancnx.betterbungee.rabbit.RabbitListener;
@@ -23,28 +24,29 @@ import java.util.concurrent.TimeoutException;
 @Getter
 public class RabbitService {
 
-    private final BetterBungeePlugin plugin;
+    private final BetterBungeePlugin    plugin;
 
-    private RabbitCredentials credentials;
-    private Connection connection;
-    private Channel channel;
-    private Gson gson;
-    private List<RabbitThread> poll;
-    private List<RabbitListener> listeners;
+    private final Gson                  gson;
+    private final RabbitCredentials     credentials;
+    private final List<RabbitThread>    workers;
+    private final List<IListenPacket>   listeners;
+    private Connection                  connection;
+    private Channel                     channel;
 
     public RabbitService(final BetterBungeePlugin plugin, final RabbitCredentials credentials) {
         this.plugin = plugin;
-        this.poll = new ArrayList<>();
+        this.workers = new ArrayList<>();
         this.listeners = new ArrayList<>();
         this.credentials = credentials;
         this.gson = new Gson();
-        this.initPoll();
+        this.initWorkers();
         this.connect();
     }
 
-    private void initPoll() {
-        for (int i = 0; i < credentials.getWorkers(); ++i)
-            this.poll.add(new RabbitThread(this, i));
+    private void initWorkers() {
+        for (int i = 0; i < credentials.getWorkers(); ++i) {
+            this.workers.add(new RabbitThread(this, i));
+        }
     }
 
     private boolean connect() {
@@ -68,8 +70,8 @@ public class RabbitService {
         return this.connection.isOpen();
     }
 
-    public void registerListener(RabbitListener listener) {
-        this.listeners.add(listener);
+    public void registerListener(final IListenPacket listenPacket) {
+        this.listeners.add(listenPacket);
     }
 
     public RabbitPacket convertPacket(final Packet packet) {
@@ -106,13 +108,13 @@ public class RabbitService {
     }
 
     public boolean sendPacket(final Packet packetBase) {
-        RabbitPacket packet = new RabbitPacket(packetBase);
-        Optional<RabbitThread> optThread = this.getPoll().stream()
+        final RabbitPacket packet = new RabbitPacket(packetBase);
+        final Optional<RabbitThread> optThread = this.getWorkers().stream()
                 .filter(RabbitThread::isAvailable)
                 .findFirst();
 
         if (optThread.isPresent()) {
-            RabbitThread thread = optThread.get();
+            final RabbitThread thread = optThread.get();
             thread.addQueuedPacket(packet);
             synchronized (thread) {
                 thread.notify();
@@ -120,7 +122,7 @@ public class RabbitService {
             return true;
         }
         RabbitThread unusedThread = null;
-        for (RabbitThread thread : this.getPoll()) {
+        for (final RabbitThread thread : this.getWorkers()) {
             if (unusedThread == null || thread.getQueueSize() < unusedThread.getQueueSize())
                 unusedThread = thread;
         }

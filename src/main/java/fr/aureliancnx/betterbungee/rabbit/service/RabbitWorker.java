@@ -10,7 +10,6 @@ public class RabbitWorker {
 
     private final BetterBungeePlugin    plugin;
 
-    private RabbitCredentials credentials;
     private RabbitService               service;
 
     public RabbitWorker(final BetterBungeePlugin plugin) {
@@ -21,22 +20,8 @@ public class RabbitWorker {
 
     }
 
-    private boolean loadConfigurationFile() {
-        try {
-            this.credentials = (RabbitCredentials) ConfigUtils.load(this.plugin, "rabbit.json",
-                    RabbitCredentials.class);
-        }catch(Exception error) {
-            error.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    public boolean loadRabbitMQ() {
-        if (!this.loadConfigurationFile()) {
-            return false;
-        }
-        this.service = new RabbitService(this.plugin, this.credentials);
+    public boolean loadRabbitMQ(final RabbitCredentials credentials) {
+        this.service = new RabbitService(this.plugin, credentials);
         return this.service.isConnected();
     }
 
