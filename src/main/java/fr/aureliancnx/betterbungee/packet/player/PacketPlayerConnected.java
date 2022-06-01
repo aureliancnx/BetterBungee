@@ -8,7 +8,7 @@ import fr.aureliancnx.betterbungee.api.event.player.BetterPlayerConnectedEvent;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.impl.player.BetterPlayer;
-import fr.aureliancnx.betterbungee.manager.IBungeeManager;
+import fr.aureliancnx.betterbungee.manager.proxy.IBungeeManager;
 import fr.aureliancnx.betterbungee.packet.ListenPacket;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;

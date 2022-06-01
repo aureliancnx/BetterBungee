@@ -1,8 +1,7 @@
 package fr.aureliancnx.betterbungee;
 
 import fr.aureliancnx.betterbungee.config.BetterBungeeConfig;
-import fr.aureliancnx.betterbungee.manager.BungeeManager;
-import fr.aureliancnx.betterbungee.manager.IBungeeManager;
+import fr.aureliancnx.betterbungee.manager.proxy.IBungeeManager;
 import fr.aureliancnx.betterbungee.rabbit.service.RabbitWorker;
 import lombok.Getter;
 import net.md_5.bungee.api.plugin.Plugin;

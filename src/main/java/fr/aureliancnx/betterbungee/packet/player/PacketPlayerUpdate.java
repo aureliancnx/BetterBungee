@@ -6,15 +6,12 @@ import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
-import fr.aureliancnx.betterbungee.manager.IBungeeManager;
+import fr.aureliancnx.betterbungee.manager.proxy.IBungeeManager;
 import fr.aureliancnx.betterbungee.packet.ListenPacket;
-import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 @Getter
 public class PacketPlayerUpdate extends ListenPacket {

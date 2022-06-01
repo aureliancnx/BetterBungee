@@ -77,10 +77,10 @@ public interface IPlayerBungee {
     long getPlayerCount();
 
     /**
-     * Get slot count
+     * Get slots
      *
      * @return int
      */
-    int getSlotCount();
+    int getSlots();
 
 }

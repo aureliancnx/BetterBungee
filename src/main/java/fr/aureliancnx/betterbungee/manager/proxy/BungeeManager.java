@@ -1,4 +1,4 @@
-package fr.aureliancnx.betterbungee.manager;
+package fr.aureliancnx.betterbungee.manager.proxy;
 
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
