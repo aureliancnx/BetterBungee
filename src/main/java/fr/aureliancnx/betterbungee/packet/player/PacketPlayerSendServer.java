@@ -5,7 +5,6 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.packet.ListenPacket;
-import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.packet.util.PacketReaderUtils;
 import fr.aureliancnx.betterbungee.packet.util.PacketWriterUtils;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
