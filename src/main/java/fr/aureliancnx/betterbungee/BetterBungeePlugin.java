@@ -1,5 +1,7 @@
 package fr.aureliancnx.betterbungee;
 
+import fr.aureliancnx.betterbungee.api.BetterBungeeAPI;
+import fr.aureliancnx.betterbungee.api.IBetterBungeeAPI;
 import fr.aureliancnx.betterbungee.config.BetterBungeeConfig;
 import fr.aureliancnx.betterbungee.listeners.PlayerLoginListener;
 import fr.aureliancnx.betterbungee.listeners.PlayerLogoutListener;
@@ -27,6 +29,8 @@ public class BetterBungeePlugin extends Plugin {
 
     @Getter
     private static BetterBungeePlugin instance;
+
+    private IBetterBungeeAPI    api;
 
     private BetterBungeeConfig  config;
     private boolean             debugMode;
@@ -58,6 +62,7 @@ public class BetterBungeePlugin extends Plugin {
         // Load managers
         bungeeManager = new BungeeManager(config);
         playerManager = new PlayerManager(bungeeManager);
+        api = new BetterBungeeAPI(bungeeManager, playerManager);
         // Load everything
         loadListeners();
         loadTasks();
@@ -77,6 +82,7 @@ public class BetterBungeePlugin extends Plugin {
         pluginManager.registerListener(this, new PlayerLogoutListener(bungeeManager, playerManager));
         pluginManager.registerListener(this, new ProxyPingListener(playerManager));
         pluginManager.registerListener(this, new ServerSwitchListener(bungeeManager));
+
         // Listen to RMQ queues
         service.registerListener(new PacketBungeePing());
         service.registerListener(new PacketBungeeSendToAll());

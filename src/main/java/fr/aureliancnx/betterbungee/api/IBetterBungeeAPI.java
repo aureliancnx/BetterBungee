@@ -10,27 +10,25 @@ import java.util.UUID;
 
 public interface IBetterBungeeAPI {
 
-    /* PROXY */
-
     /**
-     * Get a collection of current available proxies.
-     * Proxy servers objects are meant to be used
+     * Get a collection of current available bungees.
+     * Bungee servers objects are meant to be used
      * for read-only purposes.
      *
-     * Proxies considered as available are proxies online
+     * Bungee considered as available are proxies online
      * and plugged into the network.
      *
-     * @return all available proxies
+     * @return all available bungees
      */
-    Collection<IBungeeServer> getAvailableProxies();
+    Collection<IBungeeServer> getAvailableBungees();
 
     /**
-     * Get current online player count on a proxy server
-     * @param proxyName proxy name (internal name)
+     * Get current online player count on a bungee server
+     * @param bungeeName bungee name (internal name)
      * @return number of players.
-     * If proxy is not existant, -1 is returned.
+     * If bungee is not existant, -1 is returned.
      */
-    long getPlayerCountOnProxy(String proxyName);
+    long getPlayerCountOnBungee(String bungeeName);
 
     /* PLAYERS */
 
@@ -118,7 +116,7 @@ public interface IBetterBungeeAPI {
     /**
      * Lookup player username from its unique id.
      * Beware that lookup player username is requiring
-     * player to be online over the network, not necessarily onto this proxy.
+     * player to be online over the network, not necessarily onto this bungee.
      *
      * If player is not online or player's username cannot be retrieved
      * from the unique id, null is returned.
@@ -131,7 +129,7 @@ public interface IBetterBungeeAPI {
     /**
      * Lookup player's unique id from its username.
      * Beware that lookup player UUID is requiring
-     * player to be online over the network, not necessarily onto this proxy.
+     * player to be online over the network, not necessarily onto this bungee.
      *
      * If player is not online or player's unique id cannot be retrieved
      * from the username, null is returned.
@@ -151,7 +149,7 @@ public interface IBetterBungeeAPI {
      * null is returned.
      *
      * Even if the player server's name is retrieved, if this one
-     * is not registered in the current proxy server, null is returned.
+     * is not registered in the current bungee server, null is returned.
      * You might want to get player server's name directly from
      * @see #getPlayer(ProxiedPlayer)
      *
@@ -168,7 +166,7 @@ public interface IBetterBungeeAPI {
      * null is returned.
      *
      * Even if the player server's name is retrieved, if this one
-     * is not registered in the current proxy server, null is returned.
+     * is not registered in the current bungee server, null is returned.
      * You might want to get player server's name directly from
      * @see #getPlayer(UUID)
      *
@@ -185,7 +183,7 @@ public interface IBetterBungeeAPI {
      * null is returned.
      *
      * Even if the player server's name is retrieved, if this one
-     * is not registered in the current proxy server, null is returned.
+     * is not registered in the current bungee server, null is returned.
      * You might want to get player server's name directly from
      * @see #getPlayer(String)
      *
@@ -217,7 +215,7 @@ public interface IBetterBungeeAPI {
      * If nobody is connected to the requested server name, 0 is returned.
      *
      * @param serverName server name as it's registered in
-     *                   the proxy server.
+     *                   the bungee server.
      * @return count of online players
      */
     long getPlayerCountOnServer(String serverName);
