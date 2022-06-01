@@ -20,7 +20,6 @@ import fr.aureliancnx.betterbungee.rabbit.service.RabbitWorker;
 import fr.aureliancnx.betterbungee.util.ConfigUtils;
 import fr.aureliancnx.betterbungee.util.ProxyUtils;
 import lombok.Getter;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 

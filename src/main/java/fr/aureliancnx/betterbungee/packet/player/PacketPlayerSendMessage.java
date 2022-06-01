@@ -3,8 +3,6 @@ package fr.aureliancnx.betterbungee.packet.player;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import fr.aureliancnx.betterbungee.BetterBungeePlugin;
-import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.api.event.player.BetterPlayerReceiveMessageEvent;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.packet.ListenPacket;

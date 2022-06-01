@@ -8,10 +8,8 @@ import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.api.event.bungee.BetterBungeeStoppedEvent;
 import fr.aureliancnx.betterbungee.manager.proxy.IBungeeManager;
 import fr.aureliancnx.betterbungee.packet.ListenPacket;
-import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 
 @Getter

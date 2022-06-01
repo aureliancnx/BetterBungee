@@ -2,7 +2,6 @@ package fr.aureliancnx.betterbungee.rabbit.service;
 
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.rabbit.RabbitCredentials;
-import fr.aureliancnx.betterbungee.util.ConfigUtils;
 import lombok.Getter;
 
 @Getter

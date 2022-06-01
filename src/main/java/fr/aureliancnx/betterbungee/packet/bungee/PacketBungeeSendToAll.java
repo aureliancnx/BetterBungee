@@ -7,13 +7,10 @@ import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.api.event.bungee.BetterBungeeSendToAllEvent;
 import fr.aureliancnx.betterbungee.packet.ListenPacket;
-import fr.aureliancnx.betterbungee.packet.Packet;
 import fr.aureliancnx.betterbungee.rabbit.packet.RabbitPacketType;
 import lombok.Getter;
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.plugin.Event;
 import net.md_5.bungee.api.plugin.PluginManager;
 
 @Getter
