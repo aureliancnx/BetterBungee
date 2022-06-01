@@ -2,10 +2,13 @@ package fr.aureliancnx.betterbungee.manager.proxy;
 
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
+import fr.aureliancnx.betterbungee.api.event.bungee.BetterBungeePingEvent;
 import fr.aureliancnx.betterbungee.config.BetterBungeeConfig;
 import fr.aureliancnx.betterbungee.impl.proxy.BungeeServer;
 import fr.aureliancnx.betterbungee.impl.proxy.MyBungee;
 import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.plugin.PluginManager;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -61,10 +64,14 @@ public class BungeeManager implements IBungeeManager {
 
     @Override
     public IBungeeServer addBungee(final PacketBungeePing ping) {
+        final BetterBungeePlugin plugin = BetterBungeePlugin.getInstance();
         final IBungeeServer server = new BungeeServer(ping.getName(), ping.getSlots(), ping.getPlayers());
 
         bungeeByNames.put(server.getName(), server);
-        BetterBungeePlugin.getInstance().getLogger().info("[BetterBungee] Registered running proxy: " + server.getName());
+        plugin.getLogger().info("[BetterBungee] Registered running proxy: " + server.getName());
+
+        final PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
+        pluginManager.callEvent(new BetterBungeePingEvent(server));
         return server;
     }
 
