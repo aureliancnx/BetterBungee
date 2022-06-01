@@ -5,6 +5,9 @@ import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentMap;
 
+/**
+ * BungeeCord instacne with player management
+ */
 public interface IPlayerBungee {
 
     /**

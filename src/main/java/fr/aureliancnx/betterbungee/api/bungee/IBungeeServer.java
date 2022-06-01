@@ -2,6 +2,9 @@ package fr.aureliancnx.betterbungee.api.bungee;
 
 import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
 
+/**
+ * A bungee server
+ */
 public interface IBungeeServer extends IPlayerBungee {
 
     /**
