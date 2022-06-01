@@ -95,7 +95,7 @@ public class BungeeServer implements IBungeeServer {
     }
 
     @Override
-    public int getSlotCount() {
+    public int getSlots() {
         return this.slots;
     }
 

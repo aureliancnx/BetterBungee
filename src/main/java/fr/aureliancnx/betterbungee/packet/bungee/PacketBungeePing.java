@@ -30,7 +30,7 @@ public class PacketBungeePing extends Packet {
 
     public PacketBungeePing(final IBungeeServer proxyServer) {
         this.name = proxyServer.getName();
-        this.slots = proxyServer.getSlotCount();
+        this.slots = proxyServer.getSlots();
         this.players = proxyServer.getPlayers();
     }
 

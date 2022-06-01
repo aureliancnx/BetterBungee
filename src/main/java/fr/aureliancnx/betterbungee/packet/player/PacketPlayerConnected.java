@@ -27,7 +27,7 @@ public class PacketPlayerConnected extends ListenPacket {
         super();
     }
 
-    public PacketPlayerConnected(final BetterPlayer player) {
+    public PacketPlayerConnected(final IBetterPlayer player) {
         this.player = player;
     }
 
