@@ -28,10 +28,10 @@ public class PacketBungeePing extends Packet {
         super();
     }
 
-    public PacketBungeePing(final IBungeeServer proxyServer) {
-        this.name = proxyServer.getName();
-        this.slots = proxyServer.getSlots();
-        this.players = proxyServer.getPlayers();
+    public PacketBungeePing(final IBungeeServer bungeeServer) {
+        this.name = bungeeServer.getName();
+        this.slots = bungeeServer.getSlots();
+        this.players = bungeeServer.getPlayers();
     }
 
     @Override

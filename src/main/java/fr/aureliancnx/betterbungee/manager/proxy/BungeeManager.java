@@ -43,7 +43,7 @@ public class BungeeManager implements IBungeeManager {
 
     @Override
     public Collection<IBungeeServer> getBungees() {
-        return getBungees(proxyServer -> true);
+        return getBungees(bungeeServer -> true);
     }
 
     @Override

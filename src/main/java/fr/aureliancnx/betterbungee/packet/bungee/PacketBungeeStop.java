@@ -19,8 +19,8 @@ public class PacketBungeeStop extends Packet {
         super();
     }
 
-    public PacketBungeeStop(final IBungeeServer proxyServer) {
-        this.bungeeName = proxyServer.getName();
+    public PacketBungeeStop(final IBungeeServer bungeeServer) {
+        this.bungeeName = bungeeServer.getName();
     }
 
     @Override
