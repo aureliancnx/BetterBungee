@@ -2,6 +2,7 @@ package fr.aureliancnx.betterbungee.manager.proxy;
 
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
 import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
+import fr.aureliancnx.betterbungee.api.event.bungee.BetterBungeeOnlineEvent;
 import fr.aureliancnx.betterbungee.api.event.bungee.BetterBungeePingEvent;
 import fr.aureliancnx.betterbungee.config.BetterBungeeConfig;
 import fr.aureliancnx.betterbungee.impl.proxy.BungeeServer;
@@ -71,7 +72,7 @@ public class BungeeManager implements IBungeeManager {
         plugin.getLogger().info("[BetterBungee] Registered running bungeeproxy: " + server.getName());
 
         final PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
-        pluginManager.callEvent(new BetterBungeePingEvent(server));
+        pluginManager.callEvent(new BetterBungeeOnlineEvent(server));
         return server;
     }
 
