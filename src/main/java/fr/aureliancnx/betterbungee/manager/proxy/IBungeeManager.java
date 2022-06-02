@@ -29,7 +29,7 @@ public interface IBungeeManager {
     /**
      * Creates an iterator of entries with, accordingly,
      * the bungee name and the instance of IBungeeServer.
-     * @return iterator of Map.Entry<String, IBungeeServer>
+     * @return iterator
      */
     Iterator<Map.Entry<String, IBungeeServer>> iterator();
 
