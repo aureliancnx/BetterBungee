@@ -1,0 +1,5 @@
+name: BetterBungee
+version: 1.0
+description: "Multi proxies!"
+author: aureliancnx
+main: fr.aureliancnx.betterbungee.BetterBungeePlugin
