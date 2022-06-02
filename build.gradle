@@ -24,6 +24,7 @@ dependencies {
     shadow 'com.squareup.retrofit2:converter-scalars:2.9.0'
     shadow 'com.squareup.retrofit2:converter-gson:2.9.0'
     shadow 'com.rabbitmq:amqp-client:5.14.2'
+    shadow fileTree(dir: 'libs', include: 'BetterBungeeAPI-1.0-SNAPSHOT.jar')
 }
 
 jar {

@@ -4,6 +4,7 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
+import fr.aureliancnx.betterbungee.api.IBungeePing;
 import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.api.event.bungee.BetterBungeePingEvent;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
@@ -21,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 @Getter
-public class PacketBungeePing extends ListenPacket {
+public class PacketBungeePing extends ListenPacket implements IBungeePing {
 
     private static final String QUEUE_NAME = "betterbungee.proxy.keepalive";
 

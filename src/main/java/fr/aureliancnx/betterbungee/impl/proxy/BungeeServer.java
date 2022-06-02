@@ -1,5 +1,6 @@
 package fr.aureliancnx.betterbungee.impl.proxy;
 
+import fr.aureliancnx.betterbungee.api.IBungeePing;
 import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeePing;
@@ -100,9 +101,9 @@ public class BungeeServer implements IBungeeServer {
     }
 
     @Override
-    public void updateBungee(final PacketBungeePing proxy) {
-        this.players = proxy.getPlayers();
-        this.slots = proxy.getSlots();
+    public void updateBungee(final IBungeePing ping) {
+        this.players = ping.getPlayers();
+        this.slots = ping.getSlots();
         this.lastPing = System.currentTimeMillis();
         this.playerNames = new ConcurrentHashMap<>(players.entrySet().stream().collect(Collectors.toMap(
                 e -> e.getValue().getUsername().toLowerCase(),
