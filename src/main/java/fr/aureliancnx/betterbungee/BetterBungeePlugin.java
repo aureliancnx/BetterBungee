@@ -2,6 +2,10 @@ package fr.aureliancnx.betterbungee;
 
 import fr.aureliancnx.betterbungee.api.BetterBungeeAPI;
 import fr.aureliancnx.betterbungee.api.IBetterBungeeAPI;
+import fr.aureliancnx.betterbungee.commands.CommandCProxy;
+import fr.aureliancnx.betterbungee.commands.CommandProxy;
+import fr.aureliancnx.betterbungee.commands.CommandSSend;
+import fr.aureliancnx.betterbungee.commands.CommandSendToAll;
 import fr.aureliancnx.betterbungee.config.BetterBungeeConfig;
 import fr.aureliancnx.betterbungee.example.msg.MsgModule;
 import fr.aureliancnx.betterbungee.listeners.PlayerLoginListener;
@@ -64,9 +68,10 @@ public class BetterBungeePlugin extends Plugin {
         playerManager = new PlayerManager(bungeeManager);
         api = new BetterBungeeAPI(bungeeManager, playerManager);
         // Load everything
-        loadListeners();
-        loadTasks();
-        loadModules();
+        registerListeners();
+        registerCommands();
+        registerTasks();
+        registerModules();
     }
 
     @Override
@@ -74,7 +79,7 @@ public class BetterBungeePlugin extends Plugin {
 
     }
 
-    private void loadListeners() {
+    private void registerListeners() {
         final PluginManager pluginManager = getProxy().getPluginManager();
         final RabbitService service = rabbit.getService();
 
@@ -95,12 +100,21 @@ public class BetterBungeePlugin extends Plugin {
         service.registerListener(new PacketPlayerUpdate());
     }
 
-    private void loadModules() {
+    private void registerCommands() {
+        final PluginManager pluginManager = getProxy().getPluginManager();
+
+        pluginManager.registerCommand(this, new CommandCProxy(this));
+        pluginManager.registerCommand(this, new CommandProxy(this));
+        pluginManager.registerCommand(this, new CommandSendToAll());
+        pluginManager.registerCommand(this, new CommandSSend(this));
+    }
+
+    private void registerModules() {
         final MsgModule module = new MsgModule(api);
         module.register();
     }
 
-    private void loadTasks() {
+    private void registerTasks() {
 
     }
 
