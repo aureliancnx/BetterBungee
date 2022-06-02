@@ -22,11 +22,17 @@ import fr.aureliancnx.betterbungee.packet.bungee.PacketBungeeStop;
 import fr.aureliancnx.betterbungee.packet.player.*;
 import fr.aureliancnx.betterbungee.rabbit.service.RabbitService;
 import fr.aureliancnx.betterbungee.rabbit.service.RabbitWorker;
+import fr.aureliancnx.betterbungee.schedulers.ABungeeScheduler;
+import fr.aureliancnx.betterbungee.schedulers.SchedulerBungeePing;
+import fr.aureliancnx.betterbungee.schedulers.SchedulerBungeeRemoveOffline;
 import fr.aureliancnx.betterbungee.util.ConfigUtils;
 import fr.aureliancnx.betterbungee.util.ProxyUtils;
 import lombok.Getter;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class BetterBungeePlugin extends Plugin {
@@ -42,6 +48,8 @@ public class BetterBungeePlugin extends Plugin {
 
     private IPlayerManager      playerManager;
     private IBungeeManager      bungeeManager;
+
+    private List<ABungeeScheduler> schedulers;
 
     @Override
     public void onLoad() {
@@ -70,7 +78,7 @@ public class BetterBungeePlugin extends Plugin {
         // Load everything
         registerListeners();
         registerCommands();
-        registerTasks();
+        registerSchedulers();
         registerModules();
     }
 
@@ -114,8 +122,11 @@ public class BetterBungeePlugin extends Plugin {
         module.register();
     }
 
-    private void registerTasks() {
+    private void registerSchedulers() {
+        schedulers = new ArrayList<>();
 
+        schedulers.add(new SchedulerBungeePing(this));
+        schedulers.add(new SchedulerBungeeRemoveOffline(this));
     }
 
     private BetterBungeeConfig loadConfiguration() {
