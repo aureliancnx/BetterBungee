@@ -3,6 +3,7 @@ package fr.aureliancnx.betterbungee;
 import fr.aureliancnx.betterbungee.api.BetterBungeeAPI;
 import fr.aureliancnx.betterbungee.api.IBetterBungeeAPI;
 import fr.aureliancnx.betterbungee.config.BetterBungeeConfig;
+import fr.aureliancnx.betterbungee.example.msg.MsgModule;
 import fr.aureliancnx.betterbungee.listeners.PlayerLoginListener;
 import fr.aureliancnx.betterbungee.listeners.PlayerLogoutListener;
 import fr.aureliancnx.betterbungee.listeners.ProxyPingListener;
@@ -65,6 +66,7 @@ public class BetterBungeePlugin extends Plugin {
         // Load everything
         loadListeners();
         loadTasks();
+        loadModules();
     }
 
     @Override
@@ -91,6 +93,11 @@ public class BetterBungeePlugin extends Plugin {
         service.registerListener(new PacketPlayerSendMessage());
         service.registerListener(new PacketPlayerSendServer());
         service.registerListener(new PacketPlayerUpdate());
+    }
+
+    private void loadModules() {
+        final MsgModule module = new MsgModule(api);
+        module.register();
     }
 
     private void loadTasks() {
