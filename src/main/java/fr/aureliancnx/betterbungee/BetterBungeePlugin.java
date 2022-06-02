@@ -84,7 +84,9 @@ public class BetterBungeePlugin extends Plugin {
 
     @Override
     public void onDisable() {
-
+        if (schedulers != null) {
+            schedulers.forEach(ABungeeScheduler::stop);
+        }
     }
 
     private void registerListeners() {
