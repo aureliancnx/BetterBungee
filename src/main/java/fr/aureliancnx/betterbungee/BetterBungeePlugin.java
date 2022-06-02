@@ -84,6 +84,9 @@ public class BetterBungeePlugin extends Plugin {
 
     @Override
     public void onDisable() {
+        if (bungeeManager != null) {
+            new PacketBungeeStop(bungeeManager.getMy()).send();
+        }
         if (schedulers != null) {
             schedulers.forEach(ABungeeScheduler::stop);
         }
