@@ -54,7 +54,7 @@ public class PacketPlayerConnected extends ListenPacket {
         // Try to retrieve bungeecord server with name
         IBungeeServer bungeeServer = bungeeManager.getBungee(player.getBungeeName());
         if (bungeeServer == null) {
-            BetterBungeePlugin.getInstance().getLogger().severe(player.getUsername() + " tried to join an unknown proxy: " + player.getBungeeName());
+            BetterBungeePlugin.getInstance().getLogger().severe(player.getUsername() + " tried to join an unknown bungee: " + player.getBungeeName());
             return;
         }
         // Add player to current bungeecord server

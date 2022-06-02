@@ -68,7 +68,7 @@ public class BungeeManager implements IBungeeManager {
         final IBungeeServer server = new BungeeServer(ping.getName(), ping.getSlots(), ping.getPlayers());
 
         bungeeByNames.put(server.getName(), server);
-        plugin.getLogger().info("[BetterBungee] Registered running proxy: " + server.getName());
+        plugin.getLogger().info("[BetterBungee] Registered running bungeeproxy: " + server.getName());
 
         final PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
         pluginManager.callEvent(new BetterBungeePingEvent(server));
