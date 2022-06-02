@@ -1,10 +1,8 @@
 package fr.aureliancnx.betterbungee.commands;
 
 import fr.aureliancnx.betterbungee.BetterBungeePlugin;
-import fr.aureliancnx.betterbungee.api.bungee.IBungeeServer;
 import fr.aureliancnx.betterbungee.api.player.IBetterPlayer;
 import fr.aureliancnx.betterbungee.manager.player.IPlayerManager;
-import fr.aureliancnx.betterbungee.manager.proxy.IBungeeManager;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
